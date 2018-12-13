@@ -20,14 +20,17 @@ print(sorted(data, key=sort_age))
 
 # 1.2 grouped dictionary by city
 
-# GroupedData = {}
-# for key, value in sorted(data.iteritems()):
-#    GroupedData[value].append(key)
 
-for g in groupby(sorted(data, key=lambda x:x[1]), key=lambda x:x[1]):
-    print(g[0])
-    for i in g[1]:
-        print(' - ', i)
+def group_by_city(data_dict):
+    grouped_result = {}
+    for i in data_dict:
+        city_name = i.get("city")
+        if city_name in grouped_result:
+            grouped_result[city_name].append({"name": i.get("name"), "age": i.get("age")})
+        else:
+            grouped_result[city_name] = [{"name": i.get("name"), "age": i.get("age")}]
+    return  grouped_result
 
 
+print(group_by_city(data))
 
