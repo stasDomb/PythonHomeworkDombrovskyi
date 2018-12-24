@@ -11,12 +11,13 @@ data = [
     {'name': 'Dmitriy', 'city': 'Lviv', 'age': 21}]
 
 
-def sort_age(age):
-    return age.get("age")
-
+def sort_age(data):
+    #data.get("age")
+    data.sort(key=lambda k: k["age"])
+    print(data)
 
 # 1.1 sorted dictionary by age
-print(sorted(data, key=sort_age))
+print(sort_age(data))
 
 # 1.2 grouped dictionary by city
 
