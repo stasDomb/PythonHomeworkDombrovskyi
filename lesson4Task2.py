@@ -24,32 +24,20 @@ def max_binary_gap(number):
     max_gap_length = 0
     cur_gap_length = 0
     for i in range(len(binary_view)):
-        # if number & (1 << i):
         if binary_view[i] == "0":
-            # Not set, the gap widens.
+            # if digit is 0, we decrease the counter
             cur_gap_length += 1
 
         else:
-            # Set, any gap is over
+            # If digit is 1
+
             if cur_gap_length > max_gap_length:
                 max_gap_length = cur_gap_length
             cur_gap_length = 0
-    if cur_gap_length > max_gap_length:
-        max_gap_length = cur_gap_length
-    # for cases where only "1"
-#    if cur_gap_length == 0:
- #       return 0
-
 
     return  max_gap_length
 
-    # binary_view = bin(number)
-    # for i in binary_view[2:]:
-    #    print(i)
-    # return bin(number)
 
-
-print(max_binary_gap(3))
 number = 3
-#print(bin(number)[2:])
-#print(number.bit_length())
+print(max_binary_gap(number))
+
