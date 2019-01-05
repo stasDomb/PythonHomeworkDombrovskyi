@@ -11,3 +11,10 @@ def modify_string(example_string):
 
 example_string = "How. are you? Eh, ok. Low or Lower? Ohhh."
 print(modify_string(example_string))
+
+
+
+#alternative solution
+#array = list(my_string)
+#array[0], array[-1] = array[-1], array[0]
+#print("".join(array))

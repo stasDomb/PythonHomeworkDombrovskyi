@@ -13,3 +13,7 @@ def modify_tuple_to_str(example_tuple):
 
 example_tuple = ('e', 'x', 'e', 'r', 'c', 'i', 's', 'e', 's')
 print(modify_tuple_to_str(example_tuple))
+
+
+#alternative solution
+#solution: return ''.join(tup)

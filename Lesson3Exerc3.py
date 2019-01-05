@@ -31,5 +31,12 @@ def search_first_word(example_string):
     return first_word
 
 
+
 example_string = ".S'How. are you? Eh, ok. Low or Lower? Ohhh."
 print(search_first_word(example_string))
+
+#alternative solution
+#s = s.replace('.', '')
+#s = s.replace(',', '')
+#s = s.strip()
+#new_s = s.split(' ')[0]
