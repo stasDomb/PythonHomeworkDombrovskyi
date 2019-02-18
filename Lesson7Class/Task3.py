@@ -8,14 +8,16 @@
 # сеттеров(@property). У вас должна быть возможность
 # получения и назначения этих атрибутов в классе.
 
+
 class ClassSwitchConnect(object):
 
-    def __init__(self):
-        self._unit_name = 'unit name'
-        self._mac_address = '00:00:00:00:00:00'
-        self._ip_address = 'xxx.xxx.xx.xx'
-        self._login = 'login'
-        self._password = '********'
+    def __init__(self, unit_name='unit name', mac_address='00:00:00:00:00:00',
+                 ip_address='xxx.xxx.xx.xx', login='login', password='********'):
+        self._unit_name = unit_name
+        self._mac_address = mac_address
+        self._ip_address = ip_address
+        self._login = login
+        self._password = password
 
     @property
     def unit_name(self):
