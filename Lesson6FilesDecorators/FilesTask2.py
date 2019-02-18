@@ -9,7 +9,7 @@ def extract_info(file_input, file_output):
             for line in f_in:
                 words = line.split()
                 if words[0].startswith('K', 'C'):
-                    f_out.write(words[1] + '\n')
+                    f_out.write('The phone numbers are {} \n'.format(words[1]))
 
 
 extract_info('./source_file.txt', './res_file.txt',)
