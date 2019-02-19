@@ -1,8 +1,10 @@
 # Задача-3 - не обязательна к выполнению
 # Написать декоратор который будет подавлять ошибки возникающие в теле вашей функции.
 
+import functools
 
 def suppress_err(func):
+    @functools.wraps(func)
     def wrapper():
         try:
             func()
