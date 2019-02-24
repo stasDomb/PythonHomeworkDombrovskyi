@@ -2,17 +2,30 @@
 #  в папку которую он принимает на вход.
 # Так же ваш объект должен принимать исключение которое он будет подавлять.
 # Если флаг об исключении отсутствует, исключение должно быть поднято.
-#
 
 
-#Нужно написать класс, который будет собирать информацию о погоде в регионе.
-# API вы найдете на https://darksky.net/.
-# Вам нужно сделать запрос на один из API представленныx в документации.
-#  Ваша задача подумать над тем как будет устроен ваш класс,
-# какие методы он будет включать, где и как вы будете
-# конфигурировать API, хранить ключ, обрабатывать респонс
+import os
 
-import request
 
-class WeatherClass(object):
-    pass
+class ManageCont:
+    def __init__(self, path, excep, is_suppress=False):
+        self.path = path
+        self.saved_cwd = None # to save current dir
+        self.excep = excep
+        self.is_suppress = is_suppress
+
+    def __enter__(self):
+        self.saved_cwd = os.getcwd()
+        try:
+            os.chdir(self.path)
+        except FileNotFoundError:
+            print("Path '{}' is not correct.".format(self.path))
+
+    def __exit__(self, *exc_info):
+        os.chdir(self.saved_cwd)
+        return self.is_suppress
+
+
+with ManageCont(path="/Users/stas/PycharmProjects/PythonHomeworkDombrovskyi/", excep=KeyError, is_suppress=True):
+    raise KeyError
+
