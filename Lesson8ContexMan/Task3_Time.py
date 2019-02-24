@@ -1,9 +1,8 @@
-#Создать объект менеджера контекста который будет переходить
-#  в папку которую он принимает на вход.
-# Так же ваш объект должен принимать исключение которое он будет подавлять.
-# Если флаг об исключении отсутствует, исключение должно быть поднято.
 
+# Задача -3
+# Создать менеджер контекста который будет подсчитывать время выполняния блока инсрукций
 
+import time
 import os
 
 
@@ -13,8 +12,10 @@ class ManageCont:
         self.saved_cwd = None  # to save current dir
         self.excep = excep
         self.is_suppress = is_suppress
+        self.start_time = 0
 
     def __enter__(self):
+        self.start_time = time.time()
         self.saved_cwd = os.getcwd()
         try:
             os.chdir(self.path)
@@ -23,6 +24,7 @@ class ManageCont:
 
     def __exit__(self, *exc_info):
         os.chdir(self.saved_cwd)
+        print(time.time() - self.start_time)
         return self.is_suppress
 
 
