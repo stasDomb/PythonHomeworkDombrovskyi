@@ -22,10 +22,11 @@ class ManageCont:
         except FileNotFoundError:
             print("Path '{}' is not correct.".format(self.path))
 
-    def __exit__(self, *exc_info):
+    def __exit__(self, exc_type, exc_val, exc_tb):
         os.chdir(self.saved_cwd)
         print(time.time() - self.start_time)
-        return self.is_suppress
+        if exc_type is not None and issubclass(exc_type, self.excep):
+            return self.is_suppress
 
 
 with ManageCont(path="/Users/stas/PycharmProjects/PythonHomeworkDombrovskyi/", excep=KeyError, is_suppress=True):

@@ -1,4 +1,4 @@
-#Создать объект менеджера контекста который будет переходить
+# Создать объект менеджера контекста который будет переходить
 #  в папку которую он принимает на вход.
 # Так же ваш объект должен принимать исключение которое он будет подавлять.
 # Если флаг об исключении отсутствует, исключение должно быть поднято.
@@ -21,11 +21,12 @@ class ManageCont:
         except FileNotFoundError:
             print("Path '{}' is not correct.".format(self.path))
 
-    def __exit__(self, *exc_info):
+    def __exit__(self, exc_type, exc_val, exc_tb):
         os.chdir(self.saved_cwd)
-        return self.is_suppress
+        if exc_type is not None and issubclass(exc_type, self.excep):
+            return self.is_suppress
 
 
-with ManageCont(path="/Users/stas/PycharmProjects/PythonHomeworkDombrovskyi/", excep=KeyError, is_suppress=True):
+with ManageCont(path="/Users/stas/PycharmProjects/PythonHomeworkDombrovskyi/", excep=KeyError):
     raise KeyError
 

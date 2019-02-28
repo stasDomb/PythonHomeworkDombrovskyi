@@ -10,22 +10,23 @@ import contextlib
 
 
 @contextlib.contextmanager
-def manage_cont(path,excep):
+def manage_cont(path, excep, is_suppress=False):
     saved_cwd = os.getcwd()
     try:
         os.chdir(path)
-    except FileNotFoundError:
-        print("Path '{}' is not correct.".format(path))
-    try:
         yield {}
-    except excep as e:
-        print("error: {}".format(e))
+    except excep:
+        print("Exception '{}' was raised".format(excep))
+
     finally:
         os.chdir(saved_cwd)
-        return excep
+        if is_suppress:
+            pass
+        else:
+            raise
 
 
-with manage_cont(path="/Users/stas/PycharmProjects/PythonHomeworkDombrovskyi/", excep=KeyError) as mc:
+with manage_cont(path="/Users/stas/PycharmProjects/PythonHomeworkDombrovskyi/", excep=KeyError,is_suppress=True) as mc:
     raise KeyError
 
 
