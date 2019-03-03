@@ -14,7 +14,7 @@ class EmailDescriptor:
         return instance.name
 
     def __set__(self, instance, value):
-        if re.fullmatch("[\w-]+@[\w-]+\.[\w-]+", value):
+        if re.fullmatch("[\.\w-]+@[\.\w-]+", value):
             instance.name = value
         else:
             raise ValueError("it's not a valid email. Please, enter a valid email")
