@@ -1,11 +1,14 @@
 # Задача-2
 # Реализовать синглтон метакласс(класс для создания классов синглтонов).
 
+
 class Singleton(type):
+    _instances = {}
 
     def __call__(cls, *args, **kwargs):
-        # your code here
-        pass
+        if cls not in cls._instances:
+            cls._instances[cls] = super(Singleton, cls).__call__(*args, **kwargs)
+        return cls._instances[cls]
 
 
 class MyClass(metaclass=Singleton):
@@ -15,3 +18,5 @@ class MyClass(metaclass=Singleton):
 c = MyClass()
 b = MyClass()
 assert id(c) == id(b)
+# print(id(c))
+# print(id(b))

@@ -20,6 +20,7 @@ class EmailDescriptor:
             raise ValueError("it's not a valid email. Please, enter a valid email")
 
 
+
 class MyClass:
     email = EmailDescriptor()
 
@@ -28,4 +29,5 @@ my_class = MyClass()
 # my_class.email = "valid-email@gmail.com"
 # print(my_class.email)
 # my_class.email = "novalidemail"
+
 
